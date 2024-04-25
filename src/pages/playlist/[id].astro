@@ -1,0 +1,26 @@
+---
+import PlayListItemCard from "../../components/PlayListItemCard.astro";
+import Layout from "../../layouts/Layout.astro";
+import { allPlaylists, songs } from "../../lib/data";
+const { id } = Astro.params;
+const playlists = allPlaylists.find((playlist) => playlist.id === id);
+const playlistSongs = songs.filter(
+    (song) => song.albumId === playlists?.albumId,
+);
+---
+
+<Layout title="Spotify Clon">
+    <div
+        id="playlist-container"
+        class="relative flex flex-col h-full bg-zinc-500/30 overflow-x-hidden"
+        transition:name=`playlist ${id} box`
+    >
+        <header></header>
+        <div
+            class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/80"
+        >
+        </div>
+    </div>
+</Layout>
+
+<style></style>
