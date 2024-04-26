@@ -2,6 +2,30 @@ import { usePlayerStore } from "../store/playerStore"
 import { useEffect, useRef, useState } from "react"
 import { Slider } from "./Slider"
 
+export const SkipBack = ({ className }) => (
+    <svg
+        data-encore-id="icon"
+        role="img"
+        aria-hidden="true"
+        viewBox="0 0 16 16"
+        className={className}    ><path
+            d="M3.3 1a.7.7 0 0 1 .7.7v5.15l9.95-5.744a.7.7 0 0 1 1.05.606v12.575a.7.7 0 0 1-1.05.607L4 9.149V14.3a.7.7 0 0 1-.7.7H1.7a.7.7 0 0 1-.7-.7V1.7a.7.7 0 0 1 .7-.7h1.6z"
+        ></path></svg
+    >
+)
+
+export const SkipForward = ({ className }) => (
+    <svg
+        data-encore-id="icon"
+        role="img"
+        aria-hidden="true"
+        viewBox="0 0 16 16"
+        className={className}    ><path
+            d="M12.7 1a.7.7 0 0 0-.7.7v5.15L2.05 1.107A.7.7 0 0 0 1 1.712v12.575a.7.7 0 0 0 1.05.607L12 9.149V14.3a.7.7 0 0 0 .7.7h1.6a.7.7 0 0 0 .7-.7V1.7a.7.7 0 0 0-.7-.7h-1.6z"
+        ></path></svg
+    >
+)
+
 export const Pause = ({ className }) => (
     <svg className={className} role="img" height="16" width="16" aria-hidden="true" viewBox="0 0 16 16"><path d="M2.7 1a.7.7 0 0 0-.7.7v12.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V1.7a.7.7 0 0 0-.7-.7H2.7zm8 0a.7.7 0 0 0-.7.7v12.6a.7.7 0 0 0 .7.7h2.6a.7.7 0 0 0 .7-.7V1.7a.7.7 0 0 0-.7-.7h-2.6z"></path></svg>
 )
@@ -123,6 +147,11 @@ const VolumeControl = () => {
 
 export function Player() {
     const { currentMusic, isPlaying, setIsPlaying, volume } = usePlayerStore(state => state);
+    const { setCurrentMusic, togglePlay } = usePlayerStore((state) => ({
+        setCurrentMusic: state.setCurrentMusic,
+        togglePlay: state.togglePlay
+    }));
+    const songs = usePlayerStore(state => state.songs);
     const audioRef = useRef();
 
     useEffect(() => {
@@ -135,6 +164,7 @@ export function Player() {
         isPlaying ? audioRef.current?.play() : audioRef.current?.pause();
     }, [isPlaying]);
 
+
     useEffect(() => {
         const { song, playlist } = currentMusic;
         if (song && playlist) {
@@ -143,12 +173,11 @@ export function Player() {
             if (Number.isFinite(volume)) {
                 audioRef.current.volume = volume;
             }
-            audioRef.current.play().catch
             audioRef.current.play().catch(error => console.error("Error playing the audio", error));
         }
     }, [currentMusic, volume]);
 
-    const handleClick = () => {
+    const handlePlayPauseClick = () => {
         setIsPlaying(!isPlaying);
     };
 
@@ -160,7 +189,7 @@ export function Player() {
 
             <div className="grid place-content-center gap-4 flex-1">
                 <div className="flex justify-center flex-col items-center">
-                    <button className="bg-white rounded-full p-2" onClick={handleClick}>
+                    <button className="bg-white rounded-full p-2" onClick={handlePlayPauseClick}>
                         {isPlaying ? <Pause /> : <Play />}
                     </button>
                     <SongControl audio={audioRef} />
@@ -176,3 +205,4 @@ export function Player() {
 }
 
 export default Player;
+
