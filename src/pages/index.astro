@@ -1,20 +1,8 @@
 ---
+import Greeting from "@/components/Greeting.svelte";
 import PlayListItemCard from "../components/PlayListItemCard.astro";
 import Layout from "../layouts/Layout.astro";
 import { playlists } from "../lib/data";
-// Obtén la hora actual
-const now = new Date();
-const hour = now.getHours();
-let greeting;
-
-// Determina el saludo basado en la hora del día
-if (hour >= 6 && hour < 12) {
-	greeting = "Buenos Días";
-} else if (hour >= 12 && hour < 20) {
-	greeting = "Buenas Tardes";
-} else {
-	greeting = "Buenas Noches";
-}
 ---
 
 <Layout title="Spotify Clon">
@@ -23,7 +11,7 @@ if (hour >= 6 && hour < 12) {
 		class="relative transition-all duration-1000 bg-zinc-500/30"
 	>
 		<div class="relative z-10 px-6 pt-10">
-			<h1 class="text-4xl font-bold">{greeting}</h1>
+			<Greeting />
 			<div class="flex flex-wrap mt-6 gap-4">
 				{
 					playlists.map((playlist) => (
@@ -37,6 +25,6 @@ if (hour >= 6 && hour < 12) {
 		>
 		</div>
 	</div>
-</Layout>
 
-<style></style>
+	<style></style>
+</Layout>

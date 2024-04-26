@@ -318,4 +318,49 @@ export const songs: Song[] = [
         "album": "Chill Lo-Fi Music",
         "duration": "4:20"
     },
+    {
+        "id": 1,
+        "albumId": 6,
+        "title": "Silent Rain",
+        "image": "https://f4.bcbits.com/img/a0363730459_16.jpg",
+        "artists": ["Urban Nocturne"],
+        "album": "Midnight Tales",
+        "duration": "3:40"
+    },
+    {
+        "id": 2,
+        "albumId": 6,
+        "title": "Lost Pages",
+        "image": "https://f4.bcbits.com/img/a0363730459_16.jpg",
+        "artists": ["Urban Nocturne"],
+        "album": "Midnight Tales",
+        "duration": "3:20"
+    },
+    {
+        "id": 3,
+        "albumId": 6,
+        "title": "Midnight Tales",
+        "image": "https://f4.bcbits.com/img/a0363730459_16.jpg",
+        "artists": ["Urban Nocturne"],
+        "album": "Midnight Tales",
+        "duration": "3:50"
+    },
+    {
+        "id": 4,
+        "albumId": 6,
+        "title": "City Lights",
+        "image": "https://f4.bcbits.com/img/a0363730459_16.jpg",
+        "artists": ["Urban Nocturne"],
+        "album": "Midnight Tales",
+        "duration": "3:30"
+    },
+    {
+        "id": 5,
+        "albumId": 6,
+        "title": "Night Drive",
+        "image": "https://f4.bcbits.com/img/a0363730459_16.jpg",
+        "artists": ["Urban Nocturne"],
+        "album": "Midnight Tales",
+        "duration": "4:20"
+    },
 ]
